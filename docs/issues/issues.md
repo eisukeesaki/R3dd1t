@@ -1,0 +1,80 @@
+issues
+    [1] system
+        [1]
+            design
+                architectural components
+                    data components
+                        resources
+                        representation of resources 
+                        control data
+                    data storage solutions
+                    connectors
+                        client
+                            user interface
+                        server
+                            origin server
+                        ?cache
+                        ?resolver
+                        ?tunnel
+                    gateway
+                        ?reverse proxy
+                            load balancer
+                    user agent
+                        browser
+                    ?proxy
+                    ?firewall
+            configure & implement
+                configure architectural components
+                    within
+                        development environment
+                            data storage solutions
+                            load balancer
+                        production environment
+                            data storage solutions
+                            load balancer
+                implement architectural components
+                    data components
+                    connectors
+            test
+                define what to test
+                    functional tests
+                    load tests
+                implement tests
+                test
+                act accordingly to test results
+                    fix issues
+                    improve implementation
+                automate testing process
+                    implement a master test program which runs all slave tests and displays the results in a human readable format
+            deploy
+                design integration flow
+                set up integration flow
+                automate integration process
+            sustatin
+                observe system and react to logs
+                    analyze operational logs
+                    act accordingly to operational logs
+                improve data availability
+                    define metrics of availability
+                improve data security
+                    define metrics of security
+            scale
+                define metrics of scale
+                    ease of modification
+                    ease of integration
+                    observability
+                    service availability
+                    load handling ability
+                    user perceived performance
+
+(DEPRECATED) issues
+    __ Reddit clone
+        ___
+            plan
+                determine if it can be built as a set of microservices
+            design
+            build
+            test
+            deploy
+            sustatin
+            scale
