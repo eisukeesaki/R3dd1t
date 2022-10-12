@@ -1,0 +1,98 @@
+data components
+    resources
+        data models
+            communities
+            users
+            posts
+            comments
+            votes
+        representation of resources 
+            JSON
+            HTML
+                documents
+                    home
+                        components
+                            header
+                                link to home
+                                link to registration
+                                link to login
+                                link to list of joined communities
+                                    list of joined communities
+                                account controls
+                                    view account info
+                                    update account info
+                                    delete account
+                                search form
+                                    search results
+                            body
+                                community
+                                    (list control
+                                        sort
+                                    controls
+                                        link to join community
+                                        form to create new post
+                                    info
+                                        name
+                                        description
+                                    list of [POST](post)s
+                                        link to post
+                                            user info
+                                            title
+                                            body
+                                            votes
+                                            metadata
+                                            post controls
+                                                update
+                                                delete
+                                            votes
+                                                number of upvotes
+                                                vote controls
+                                                    up-vote
+                                                    down-vote
+                                        post
+                                            link to previous view
+                                            user info
+                                            title
+                                            body
+                                            votes
+                                                number of upvotes
+                                                vote controls
+                                                    up-vote
+                                                    down-vote
+                                            metadata
+                                            controls
+                                                update
+                                                delete
+                                            comment form
+                                            list of comments
+                                                comment
+                                                    votes
+                                                    comment controls
+                                                        update
+                                                        delete
+                                user
+                                    UI division
+                                        profile
+                                        user contorls
+                                            link to follow
+                                    UI division
+                                        [POSTS](posts)
+                                            list of [POST](post)s created
+                                                (list control
+                                                link to post
+                                                    user info
+                                                    title
+                                                    body
+                                                    votes
+                                                    metadata
+                                                    (list controls
+                                                    votes
+                                                        number of upvotes
+                                                        vote controls
+                                                            up-vote
+                                                            down-vote
+                                        ([COMMENTS](commnets)
+    data operation
+        control data
+    data storage solutions
+
