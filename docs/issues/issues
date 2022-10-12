@@ -2,13 +2,16 @@ issues
     [1] system
         [1]
             define features
+                ✓minimal viable product
             design
                 architectural components
                     data components
-                        resources
-                        representation of resources 
-                        control data
-                    data storage solutions
+                        data model
+                            resources
+                            representation of resources 
+                        data operation
+                            control data
+                        data storage solutions
                     connectors
                         client
                             user interface
@@ -17,7 +20,7 @@ issues
                         ?cache
                         ?resolver
                         ?tunnel
-                    gateway
+                    ?gateway
                         ?reverse proxy
                             load balancer
                     user agent
