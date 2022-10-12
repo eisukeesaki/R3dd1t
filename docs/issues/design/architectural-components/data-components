@@ -1,11 +1,34 @@
 data components
     resources
         data models
-            communities
             users
+                UUID
+                communities: UUID of a communities record
+                email
+                password
+                username
+                (about)
+            communities
+                UUID
+                users: UUID of a users record
+                posts: UUID of a posts record
+                (about)
             posts
+                UUID
+                users: UUID of a users record
+                communities: UUID of a communities record
+                votes: integer
+                comments: UUID of a comments record
+                title: string
+                body: string
             comments
+                UUID
+                users: UUID of a users record
+                votes: points
+                comments: UUID of a comments record
+                body: string
             votes
+                points: integer
         representation of resources 
             JSON
             HTML
@@ -92,6 +115,7 @@ data components
                                                             up-vote
                                                             down-vote
                                         ([COMMENTS](commnets)
+        ?metadata
     data operation
         control data
     data storage solutions
