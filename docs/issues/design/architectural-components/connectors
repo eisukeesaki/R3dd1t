@@ -1,0 +1,7 @@
+client 
+    browser
+        run time environment to optimize the client application in
+            Google Chrome version TBD or later
+
+server
+    origin server

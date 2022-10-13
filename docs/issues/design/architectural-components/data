@@ -1,3 +1,33 @@
+data storage & retrieval
+    how & where to store data and retrieve it from? 
+        sites (environments)
+            production
+                cloud
+                    Amazon RDS for PostgreSQL
+            development
+                postgresql server running on development machine's port
+        data storage scheme
+            relational DBMS
+                PostgreSQL server
+                PostgreSQL client
+                    psql running on development machine's port
+        data retrieval
+            data server
+                postgresql server running on prod/dev machine's port
+            data client
+                Node.js instance running on prod/dev machine's port
+                    DBMS interface
+                        brianc/node-postgres
+            DBMS interface
+                Structured Query Language
+        data representation formats
+            JSON object
+            HTML document
+        data exchange medium
+            HTTP message
+        identifer of data representation
+            URIs assigned to resource representations
+
 data components
     resources
         data models
