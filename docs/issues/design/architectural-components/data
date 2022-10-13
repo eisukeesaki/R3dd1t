@@ -1,68 +1,45 @@
-data storage & retrieval
-    how & where to store data and retrieve it from? 
-        sites (environments)
-            production
-                cloud
-                    Amazon RDS for PostgreSQL
-            development
-                postgresql server running on development machine's port
-        data storage scheme
-            relational DBMS
-                PostgreSQL server
-                PostgreSQL client
-                    psql running on development machine's port
-        data retrieval
-            data server
-                postgresql server running on prod/dev machine's port
-            data client
-                Node.js instance running on prod/dev machine's port
-                    DBMS interface
-                        brianc/node-postgres
-            DBMS interface
-                Structured Query Language
-        data representation formats
-            JSON object
-            HTML document
-        data exchange medium
-            HTTP message
-        identifer of data representation
-            URIs assigned to resource representations
-
-data components
-    resources
-        data models
+data
+    data components of hypermedia system
+        what are the resources?
             users
-                UUID
-                communities: UUID of a communities record
-                email
-                password
-                username
-                (about)
             communities
-                UUID
-                users: UUID of a users record
-                posts: UUID of a posts record
-                (about)
             posts
-                UUID
-                users: UUID of a users record
-                communities: UUID of a communities record
-                votes: integer
-                comments: UUID of a comments record
-                title: string
-                body: string
             comments
-                UUID
-                users: UUID of a users record
-                votes: points
-                comments: UUID of a comments record
-                body: string
             votes
-                points: integer
-        representation of resources 
-            JSON
-            HTML
-                documents
+            client-side application
+        how to represent resources? 
+            JSON objects
+                data models
+                    users
+                        UUID
+                        communities: UUID of a communities record
+                        email
+                        password
+                        username
+                        (about)
+                    communities
+                        UUID
+                        users: UUID of a users record
+                        posts: UUID of a posts record
+                        (about)
+                    posts
+                        UUID
+                        users: UUID of a users record
+                        communities: UUID of a communities record
+                        votes: integer
+                        comments: UUID of a comments record
+                        title: string
+                        body: string
+                    comments
+                        UUID
+                        users: UUID of a users record
+                        votes: points
+                        comments: UUID of a comments record
+                        body: string
+                    votes
+                        points: integer
+            HTML documents
+                documents (pages)
                     home
                         components
                             header
@@ -145,8 +122,55 @@ data components
                                                             up-vote
                                                             down-vote
                                         ([COMMENTS](commnets)
-        ?metadata
-    data operation
-        control data
-    data storage solutions
+            ?resource metadata
+        data storage & retrieval
+            how & where to store data and retrieve it from? 
+                sites (environments)
+                    production
+                        cloud
+                            Amazon RDS for PostgreSQL
+                    development
+                        postgresql server running on development machine's port
+                data storage scheme
+                    relational DBMS
+                        PostgreSQL server
+                        PostgreSQL client
+                            psql running on development machine's port
+                data retrieval
+                    data server
+                        postgresql server running on prod/dev machine's port
+                    data client
+                        Node.js instance running on prod/dev machine's port
+                            DBMS interface
+                                brianc/node-postgres
+                    DBMS interface
+                                Structured Query Language
+        data representation
+            how to format data representations?
+                JSON objects
+                    instances of modeled data
+                        supposed to be consumed by client side application
+                HTML documents
+                    instances of user interface
+                        supposed to be rendered on web browsers and used by end-users
+        data identification
+            how to identify data representations?
+                URIs assigned to resource representations
+        data transmission
+            what is the medium for data exchange?
+                HTTP message
+                    request
+                        HTTP request header
+                        HTTP request body
+                    response
+                        HTTP response header
+                        HTTP response body
+                    compose using Node.js
+                    receive and send using HTTP servers
+        data operation
+            control data
+                definition
+                    HTTP response status codes assigned to particular types of response from origin server(s)
+                compose using Express.js on Node.js
+                receive and send using HTTP servers
 
