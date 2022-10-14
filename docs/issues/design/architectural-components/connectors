@@ -1,7 +1,52 @@
-client 
-    browser
-        run time environment to optimize the client application in
-            Google Chrome version TBD or later
-
-server
+connectors
     origin server
+        origin domain host
+            AWS EC2 instance running Ubuntu server
+        origin domain name
+            r3dd1t.org
+        interface
+            connection
+                TCP
+            input/output worker
+                Node.js process listening to a port
+            input
+                HTTP response message
+            output
+                HTTP request message
+            interface location identifier
+                URI
+        function
+            listens to HTTP requests
+            serve resources to clients
+                resources to serve
+                    UI resources
+                    data resources
+                resource server
+                    Node.js process
+                        express application
+    web browser
+        run-time environments
+            macOS
+            Windows
+            Linux
+        type
+            Google Chrome version TBD or later
+        interface
+            connection
+                TCP
+            input
+                HTTP response message
+            output
+                HTTP request message
+        functions
+            runs UI application
+                UI application
+                    HTML document
+                    Document Object Model
+                    Vue application
+                    how to request resources from origin servers?
+            initiates HTTP requests
+            receives and act on HTTP responses
+    ?cache
+    ?resolver
+    ?tunnel
