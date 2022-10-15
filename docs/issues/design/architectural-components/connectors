@@ -15,15 +15,18 @@ connectors
                 HTTP request message
             interface location identifier
                 URI
-        function
-            listens to HTTP requests
-            serve resources to clients
-                resources to serve
-                    UI resources
-                    data resources
-                resource server
-                    Node.js process
-                        express application
+        HTTP server
+            tasks
+                [✓] pass /api requests to Node.js process
+            function
+                listens to HTTP requests
+                serve resources to clients
+                    resources to serve
+                        UI resources
+                        data resources
+                    resource server
+                        Node.js process
+                            express application
     web browser
         run-time environments
             macOS
