@@ -1,0 +1,15 @@
+proxies
+    reverse proxy
+        instance
+            Nginx
+        functions
+            listen to requests ...
+                ... made to port 80 on the system the reverse proxy is running on
+            direct requests
+                entities
+                    static files
+                        Vue application
+                    Node.js process
+                        API
+            send responses
+    load balancer
