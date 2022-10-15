@@ -25,8 +25,9 @@ issues
                             load balancer
                     user agent
                         browser
-                    ?proxy
+                    ?CDN
                     ?firewall
+                    ?proxy
             configure & implement
                 configure architectural components
                     within
