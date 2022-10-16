@@ -1,12 +1,1 @@
 node_modules
-
-# DELETE BELOW UPON DELETION OF BOOSTRAPPED EXPRESS APP AND VUE APP
-origin/app.js
-origin/bin/
-origin/package-lock.json
-origin/package.json
-origin/public/
-origin/routes/
-origin/views/
-ui/
-# DELETE ABOVE UPON DELETION OF BOOSTRAPPED EXPRESS APP AND VUE APP
