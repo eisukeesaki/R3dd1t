@@ -144,7 +144,7 @@ data
                             DBMS interface
                                 brianc/node-postgres
                     DBMS interface
-                                Structured Query Language
+                        Structured Query Language
         data representation
             how to format data representations?
                 JSON objects
@@ -152,7 +152,8 @@ data
                         supposed to be consumed by client side application
                 HTML documents
                     instances of user interface
-                        supposed to be rendered on web browsers and used by end-users
+                        manipulate using Vue application
+                        render on web browsers and used by end-users
         data identification
             how to identify data representations?
                 URIs assigned to resource representations

@@ -1,19 +1,16 @@
 connectors
     domain name registrar
-        registered domain name for service
+        register domain name for service
+            r3dd1t.org
         configuration
             name servers
                 domain names of domain name servers
-        TODO
-            verify if domain.com offers domain name server as a service
-                configure DNS records on control pane
-                disable or destroy Route 53 hosted zone
-                verify response for requests from internet
+                create A record which maps domain name to production machine's IPv4 address
     resolver
         domain name server
             Amazon Route 53
                 hosted zone
-                    A record
+                    create A record
                         record name
                             r3dd1t.org
                         value
@@ -84,9 +81,28 @@ connectors
                     PostgreSQL client
                         psql
         interface
-            connection
-                TCP
-            input/output worker
+            HTTP server
+                Nginx
+                tasks
+                    [✓] pass /api requests to Node.js process
+                function
+                    listens to HTTP requests
+                    serves responses to clients
+                        resources to serve
+                            UI resources
+                            data resources
+                        resource server
+                            Node.js process
+                                express application
+            communication
+                [application, presentation, session]
+                    HTTP
+                Transport
+                    TCP
+                Network
+                    IP
+                [Data Link, Physical]
+            application worker
                 Node.js process listening to a port
             input
                 HTTP response message
@@ -94,18 +110,6 @@ connectors
                 HTTP request message
             interface location identifier
                 URI
-        HTTP server
-            tasks
-                [✓] pass /api requests to Node.js process
-            function
-                listens to HTTP requests
-                serve resources to clients
-                    resources to serve
-                        UI resources
-                        data resources
-                    resource server
-                        Node.js process
-                            express application
     web browser
         run-time environments
             macOS
@@ -114,8 +118,9 @@ connectors
         type
             Google Chrome version TBD or later
         interface
-            connection
-                TCP
+            communication
+                [application, presentation, session]
+                    HTTP
             input
                 HTTP response message
             output
@@ -126,7 +131,6 @@ connectors
                     HTML document
                     Document Object Model
                     Vue application
-                    how to request resources from origin servers?
             initiates HTTP requests
             receives and act on HTTP responses
     ?cache

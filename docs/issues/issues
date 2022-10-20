@@ -6,22 +6,22 @@ issues
             design
                 architectural components
                     data components
-                        data model
+                        ✓data model
                             resources
                             representation of resources 
                         data operation
                             control data
                         data storage solutions
                     connectors
-                        client
+                        ✓client
                             user interface
-                        server
+                        ✓server
                             origin server
                         ?cache
                         ?resolver
                         ?tunnel
-                    ?gateway
-                        ?reverse proxy
+                    gateway
+                        ✓reverse proxy
                             load balancer
                     user agent
                         browser

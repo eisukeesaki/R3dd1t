@@ -22,7 +22,6 @@ features
         view list of comment
         update a comment
         destroy a comment
-        comments - meta
     votes
         vote for posts
             create vote
