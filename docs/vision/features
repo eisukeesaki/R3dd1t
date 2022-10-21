@@ -1,9 +1,4 @@
 features
-    communities
-        create a community
-        view list of communities
-        update a community
-        destroy a community
     users
         user management
             user registration
@@ -12,6 +7,11 @@ features
             user session
                 create login session
                 destroy login session
+    communities
+        create a community
+        view list of communities
+        update a community
+        destroy a community
     posts
         create a post 
         view a list of posts 

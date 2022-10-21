@@ -11,33 +11,157 @@ data
             JSON objects
                 data models
                     users
-                        UUID
-                        communities: UUID of a communities record
+                        id
+                            UUID
+                            PK
                         email
-                        password
+                            string
+                            not null
+                            unique
+                        (password)
+                            string
+                            not null
+                            unique
                         username
+                            string
+                            not null
+                            unique
                         (about)
+                            string
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
                     communities
-                        UUID
-                        users: UUID of a users record
-                        posts: UUID of a posts record
+                        id
+                            UUID
+                            PK
+                        name
+                            string
+                            not null
+                            unique
                         (about)
+                            string
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
+                    memberships
+                        id
+                            PK
+                            UUID
+                        user
+                            references users id
+                            not null
+                        community
+                            references communities id
+                            not null
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
                     posts
-                        UUID
-                        users: UUID of a users record
-                        communities: UUID of a communities record
-                        votes: integer
-                        comments: UUID of a comments record
-                        title: string
-                        body: string
+                        id
+                            UUID
+                            PK
+                        user
+                            UUID
+                            references users id
+                            not null
+                        community
+                            UUID
+                            references communities id
+                            not null
+                        title
+                            string
+                            not null
+                        body
+                            string
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
+                    votes_posts
+                        id
+                            UUID
+                            PK
+                        user
+                            UUID
+                            references users id
+                            not null
+                        post
+                            UUID
+                            references posts id
+                            not null
+                        upvote
+                            boolean
+                            not null
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
                     comments
-                        UUID
-                        users: UUID of a users record
-                        votes: points
-                        comments: UUID of a comments record
-                        body: string
-                    votes
-                        points: integer
+                        id
+                            UUID
+                            PK
+                        post
+                            UUID
+                            references posts id
+                            not null
+                        parent
+                            UUID
+                            references comments id
+                        user
+                            UUID
+                            references users id
+                            not null
+                        body
+                            string
+                            not null
+                        created_at
+                            time
+                            automatically generate value upon record creation
+                            not null
+                        updated_at
+                            time
+                            automatically generate value upon record update
+                    votes_comments
+                        id
+                            UUID
+                            PK
+                        user
+                            UUID
+                            references users id
+                            not null
+                        comment
+                            UUID
+                            references comments id
+                            not null
+                        upvote
+                            boolean
+                            not null
+                        created_at
+                            time
+                            not null
+                            automatically generate value upon record creation
+                        updated_at
+                            time
+                            automatically generate value upon record update
             HTML documents
                 documents (pages)
                     home
@@ -55,6 +179,9 @@ data
                                 search form
                                     search results
                             body
+                                login
+                                registration
+                                settings
                                 community
                                     (list control
                                         sort
@@ -121,7 +248,7 @@ data
                                                         vote controls
                                                             up-vote
                                                             down-vote
-                                        ([COMMENTS](commnets)
+                                        ([COMMENTS](comments)
             ?resource metadata
         data storage & retrieval
             how & where to store data and retrieve it from? 

@@ -30,16 +30,43 @@ issues
                     ?proxy
             configure & implement
                 configure architectural components
-                    within
-                        development environment
-                            data storage solutions
-                            load balancer
-                        production environment
-                            data storage solutions
-                            load balancer
+                    development environment
+                        data storage solutions
+                        load balancer
+                    production environment
+                        data storage solutions
+                            install database server
+                            install database client
+                            set up database user
+                            set up database
+                        load balancer
                 implement architectural components
                     data components
-                    connectors
+                        SQL scripts
+                            database creater
+                            database destroyer
+                            table creater
+                            table destroyer
+                            seeder
+                    origin server
+                        reuse 'sign in with Google'
+                        functions
+                            user record management
+                                CRUD user records
+                                    endpoints
+                            user session management
+                                create login session
+                                    authenticate requests using 'sign in with Google'
+                                destroy login session
+                    Vue application
+                        views
+                            login
+                            registration
+                            settings
+                        components
+                            header
+                            registration
+                            settings
             test
                 define what to test
                     functional tests
