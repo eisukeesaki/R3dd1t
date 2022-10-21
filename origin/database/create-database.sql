@@ -1,0 +1,2 @@
+CREATE DATABASE r3dd1t;
+\c r3dd1t
