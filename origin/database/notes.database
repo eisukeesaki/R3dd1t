@@ -1,0 +1,37 @@
+do this next
+    []
+        list out case patterns of data integrity tests
+        create table integrity script
+        test table integrity
+        fix relevant issues
+
+tests
+    data integrity tests
+        case patterns
+            // [] if users is deleted
+            //     set _user in ___ to NULL-UUID
+            // [] if posts is deleted, set _post in all tables to NULL-UUID
+            // [] if communities is deleted, set _community in all tables to NULL-UUID
+
+issues
+    integrity
+        [✓] keep posts of deleted users
+            desired behavior
+                when a users record is deleted, keep the posts records referencing the users record
+            expected behavior
+                referenced users is deleted -> posts._user of referencing record is set to null
+            actual behavior
+                referenced users is deleted -> all posts records referencing deleted record is deleted
+            relevant code
+                /Users/eisuke/dev/r3dd1t/origin/database/create-tables.sql
+                    line 43
+            other
+                ON DELETE SET NULL is not working as expected
+            verified cause
+                type UUID does not accept NULL
+            solution
+                solution core
+                    ON DELETE SET DEFAULT
+                verified application of solution
+                    _user UUID DEFAULT uuid_nil () REFERENCES users ON DELETE SET DEFAULT NOT NULL
+
