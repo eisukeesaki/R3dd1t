@@ -51,9 +51,11 @@ CREATE TRIGGER update_communities_modtime
 CREATE TABLE memberships (
     id UUID
         PRIMARY KEY,
-    _user UUID REFERENCES users
+    _user UUID
+        REFERENCES users
         ON DELETE CASCADE NOT NULL,
-    _community UUID REFERENCES communities
+    _community UUID
+        REFERENCES communities
         ON DELETE CASCADE NOT NULL,
     created TIMESTAMP NOT NULL
         DEFAULT (CURRENT_TIMESTAMP), 
@@ -69,9 +71,11 @@ CREATE TRIGGER update_memberships_modtime
 CREATE TABLE posts (
     id UUID
         PRIMARY KEY,
-    _user UUID DEFAULT uuid_nil () REFERENCES users
+    _user UUID DEFAULT uuid_nil ()
+        REFERENCES users
         ON DELETE SET DEFAULT,
-    _community UUID REFERENCES communities
+    _community UUID
+        REFERENCES communities
         ON DELETE CASCADE NOT NULL,
     title varchar(100) NOT NULL,
     body varchar(1000),
@@ -89,11 +93,15 @@ CREATE TRIGGER update_posts_modtime
 CREATE TABLE votes_posts (
     id UUID
         PRIMARY KEY,
-    _user UUID DEFAULT uuid_nil () REFERENCES users
+    _user UUID DEFAULT uuid_nil ()
+        REFERENCES users
         ON DELETE SET DEFAULT,
-    _post UUID REFERENCES posts
+    _post UUID
+        REFERENCES posts
         ON DELETE CASCADE,
-    upvote boolean NOT NULL,
+    value INTEGER
+        NOT NULL
+        CHECK (-1 <= value and value <= 1),
     created TIMESTAMP NOT NULL
         DEFAULT (CURRENT_TIMESTAMP), 
     modified TIMESTAMP
@@ -108,11 +116,14 @@ CREATE TRIGGER update_votes_posts_modtime
 CREATE TABLE comments (
     id UUID
         PRIMARY KEY,
-    _user UUID DEFAULT uuid_nil () REFERENCES users
+    _user UUID DEFAULT uuid_nil ()
+        REFERENCES users
         ON DELETE SET DEFAULT,
-    _post UUID REFERENCES posts
+    _post UUID
+        REFERENCES posts
         ON DELETE CASCADE,
-    _parent UUID DEFAULT uuid_nil () REFERENCES comments
+    _parent UUID DEFAULT uuid_nil ()
+        REFERENCES comments
         ON DELETE SET DEFAULT,
     body varchar(1000) NOT NULL,
     created TIMESTAMP NOT NULL
@@ -129,11 +140,15 @@ CREATE TRIGGER update_comments_modtime
 CREATE TABLE votes_comments (
     id UUID
         PRIMARY KEY,
-    _user UUID DEFAULT uuid_nil () REFERENCES users
+    _user UUID DEFAULT uuid_nil ()
+        REFERENCES users
         ON DELETE SET DEFAULT,
-    _comment UUID REFERENCES comments
+    _comment UUID
+        REFERENCES comments
         ON DELETE CASCADE,
-    upvote boolean NOT NULL,
+    value INTEGER
+        NOT NULL
+        CHECK (-1 <= value and value <= 1),
     created TIMESTAMP NOT NULL
         DEFAULT (CURRENT_TIMESTAMP), 
     modified TIMESTAMP
