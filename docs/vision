@@ -1,0 +1,690 @@
+tasks
+    create header using React in playground
+    implement minimal UI skeleton using React
+        header
+        main
+    implement minimal full-stack functions
+        functions
+            render list of links to all communities in existence on browser
+            view list of pre-selected posts from every communities on browser
+                method of pre-selection
+                    most recently created post
+
+map of system
+    system
+        AWS
+            Amazon RDS for PostgreSQL
+                unknown OS
+                    database server process
+                        PostgreSQL instance
+                            configurations
+                            users
+                            roles
+                            database cluster
+                                database
+                                    (service name)
+                                        *SQL scripts
+                                            CREATE EXTENSION(s)
+                                            CREATE INDEX(es)
+                                            CREATE FUNCTION(s)
+                                            CREATE TABLE(s)
+                                            CREATE TRIGGER(s)
+                                                functionName()
+            EC2 instance
+                Ubuntu Server
+                    Linux kernel
+                        reverse proxy process
+                            Nginx instance
+                                functions
+                                    send responses to the senders of HTTP requests
+                                *nginx.conf
+                                    listen to port 80 for incoming HTTP requests
+                                    location /
+                                        send static Vue files
+                                    location /api/
+                                        send request to localhost port whereby the Node.js server process is listenting to
+                        Vue application
+                            dist
+                                *components
+                                !unknown Vue application constituenets
+                        Node.js process
+                            Node.js event loop
+                                Node.js server application
+                                    functions
+                                        listen to port 3000 for incoming HTTP requests
+                                        send responses to the senders of HTTP requests
+                                    parameter: requestListener
+                                        *Express.js app
+                                            tasks
+                                                optimize directory structure
+                                            routers
+                                                users
+                                                memberships
+                                                communities
+                                                posts
+                                                votesPosts
+                                                comments
+                                                votesComments
+                                                -----------
+                                                controllers
+                                                    services
+        client host
+            Google Chrome web browser
+
+design
+    architectural components
+        data
+            data components of hypermedia system
+                what are the resources?
+                    users
+                    communities
+                    posts
+                    comments
+                    votes
+                    client-side application
+                how to represent resources? 
+                    JSON objects
+                        data models
+                            (DEPRECATED. SEE: /origin/database/create-tables.sql) users
+                                id
+                                    UUID
+                                    PK
+                                email
+                                    string
+                                    not null
+                                    unique
+                                (password)
+                                    string
+                                    not null
+                                    unique
+                                username
+                                    string
+                                    not null
+                                    unique
+                                (about)
+                                    string
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            communities
+                                id
+                                    UUID
+                                    PK
+                                name
+                                    string
+                                    not null
+                                    unique
+                                (about)
+                                    string
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            memberships
+                                id
+                                    PK
+                                    UUID
+                                user
+                                    references users id
+                                    not null
+                                community
+                                    references communities id
+                                    not null
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            posts
+                                id
+                                    UUID
+                                    PK
+                                user
+                                    UUID
+                                    references users id
+                                    not null
+                                community
+                                    UUID
+                                    references communities id
+                                    not null
+                                title
+                                    string
+                                    not null
+                                body
+                                    string
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            votes_posts
+                                id
+                                    UUID
+                                    PK
+                                user
+                                    UUID
+                                    references users id
+                                    not null
+                                post
+                                    UUID
+                                    references posts id
+                                    not null
+                                upvote
+                                    boolean
+                                    not null
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            comments
+                                id
+                                    UUID
+                                    PK
+                                post
+                                    UUID
+                                    references posts id
+                                    not null
+                                parent
+                                    UUID
+                                    references comments id
+                                user
+                                    UUID
+                                    references users id
+                                    not null
+                                body
+                                    string
+                                    not null
+                                created_at
+                                    time
+                                    automatically generate value upon record creation
+                                    not null
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                            votes_comments
+                                id
+                                    UUID
+                                    PK
+                                user
+                                    UUID
+                                    references users id
+                                    not null
+                                comment
+                                    UUID
+                                    references comments id
+                                    not null
+                                upvote
+                                    boolean
+                                    not null
+                                created_at
+                                    time
+                                    not null
+                                    automatically generate value upon record creation
+                                updated_at
+                                    time
+                                    automatically generate value upon record update
+                    HTML documents
+                        documents (pages)
+                            home
+                                components
+                                    header
+                                        link to home
+                                        link to registration
+                                        link to login
+                                        link to list of joined communities
+                                            list of joined communities
+                                        account controls
+                                            view account info
+                                            update account info
+                                            delete account
+                                        search form
+                                            search results
+                                    body
+                                        login
+                                        registration
+                                        settings
+                                        community
+                                            (list control
+                                                sort
+                                            controls
+                                                link to join community
+                                                form to create new post
+                                            info
+                                                name
+                                                description
+                                            list of [POST](post)s
+                                                link to post
+                                                    user info
+                                                    title
+                                                    body
+                                                    votes
+                                                    metadata
+                                                    post controls
+                                                        update
+                                                        delete
+                                                    votes
+                                                        number of upvotes
+                                                        vote controls
+                                                            up-vote
+                                                            down-vote
+                                                post
+                                                    link to previous view
+                                                    user info
+                                                    title
+                                                    body
+                                                    votes
+                                                        number of upvotes
+                                                        vote controls
+                                                            up-vote
+                                                            down-vote
+                                                    metadata
+                                                    controls
+                                                        update
+                                                        delete
+                                                    comment form
+                                                    list of comments
+                                                        comment
+                                                            votes
+                                                            comment controls
+                                                                update
+                                                                delete
+                                        user
+                                            UI division
+                                                profile
+                                                user contorls
+                                                    link to follow
+                                            UI division
+                                                [POSTS](posts)
+                                                    list of [POST](post)s created
+                                                        (list control
+                                                        link to post
+                                                            user info
+                                                            title
+                                                            body
+                                                            votes
+                                                            metadata
+                                                            (list controls
+                                                            votes
+                                                                number of upvotes
+                                                                vote controls
+                                                                    up-vote
+                                                                    down-vote
+                                                ([COMMENTS](comments)
+                    ?resource metadata
+                data storage & retrieval
+                    how & where to store data and retrieve it from? 
+                        sites (environments)
+                            production
+                                cloud
+                                    Amazon RDS for PostgreSQL
+                            development
+                                postgresql server running on development machine's port
+                        data storage scheme
+                            relational DBMS
+                                PostgreSQL server
+                                PostgreSQL client
+                                    psql running on development machine's port
+                        data retrieval
+                            data server
+                                postgresql server running on prod/dev machine's port
+                            data client
+                                Node.js instance running on prod/dev machine's port
+                                    DBMS interface
+                                        brianc/node-postgres
+                            DBMS interface
+                                Structured Query Language
+                data representation
+                    how to format data representations?
+                        JSON objects
+                            instances of modeled data
+                                supposed to be consumed by client side application
+                        HTML documents
+                            instances of user interface
+                                manipulate using Vue application
+                                render on web browsers and used by end-users
+                data identification
+                    how to identify data representations?
+                        URIs assigned to resource representations
+                data transmission
+                    what is the medium for data exchange?
+                        HTTP message
+                            request
+                                HTTP request header
+                                HTTP request body
+                            response
+                                HTTP response header
+                                HTTP response body
+                            compose using Node.js
+                            receive and send using HTTP servers
+                data operation
+                    control data
+                        definition
+                            HTTP response status codes assigned to particular types of response from origin server(s)
+                        compose using Express.js on Node.js
+                        receive and send using HTTP servers
+        connectors
+            domain name registrar
+                register domain name for service
+                    r3dd1t.org
+                configuration
+                    name servers
+                        domain names of domain name servers
+                        create A record which maps domain name to production machine's IPv4 address
+            resolver
+                domain name server
+                    Amazon Route 53
+                        hosted zone
+                            create A record
+                                record name
+                                    r3dd1t.org
+                                value
+                                    public IP address of EC2 instance
+            origin server
+                infrastructure provider
+                    Elastic Compute Cloud 2 of Amazon Web Services
+                origin domain's host
+                    AWS EC2 instance running Ubuntu server
+                origin domain name
+                    r3dd1t.org
+                components
+                    Amazon EC2 key pair
+                        https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
+                        private key
+                            .pem
+                            chmod 400
+                    GitHub personal access token
+                    operating system
+                        Ubuntu Server 22.04
+                        user of operating system
+                            Linux user
+                                passwd
+                        apt-get update && apt-get upgrade
+                    application source code
+                        give 'other' execution permission in every parent directory of a file to serve to the world
+                            verified on /EC2/Ubuntu Server but have not found publication on the subject
+                    command line utilities
+                        exa
+                            apt-get install exa
+                    DevOps tools
+                        fish
+                            apt-get install fish
+                            eisukeesaki/fish-configs
+                        ?nvim
+                    Nginx
+                        apt-get install nginx
+                        components
+                            configuration file
+                                use variables to avoid writing system-dependent configuration
+                        roles
+                            HTTP server
+                                listen to requests ...
+                                    ... made to port 80 on the system the reverse proxy is running on
+                                send responses
+                            reverse proxy server
+                                direct requests
+                                    entities
+                                        static files
+                                            Vue application
+                                        Node.js process
+                                            API
+                            load balancer
+                    JavsScript runtime
+                        Node.js version manager
+                            nvm
+                                github.com/nvm-sh/nvm#installing-and-updating
+                            Node.js
+                                nvm --help
+                    Node.js process manager
+                        PM2
+                            npm install -g pm2@latest
+                    database
+                        database management system
+                            Amazon Relational Database Service
+                                PostgreSQL
+                        user interface for database management system
+                            PostgreSQL client
+                                psql
+                interface
+                    HTTP server
+                        Nginx
+                        tasks
+                            [✓] pass /api requests to Node.js process
+                        function
+                            listens to HTTP requests
+                            serves responses to clients
+                                resources to serve
+                                    UI resources
+                                    data resources
+                                resource server
+                                    Node.js process
+                                        express application
+                    communication
+                        [application, presentation, session]
+                            HTTP
+                        Transport
+                            TCP
+                        Network
+                            IP
+                        [Data Link, Physical]
+                    application worker
+                        Node.js process listening to a port
+                    input
+                        HTTP response message
+                    output
+                        HTTP request message
+                    interface location identifier
+                        URI
+            web browser
+                run-time environments
+                    macOS
+                    Windows
+                    Linux
+                type
+                    Google Chrome version TBD or later
+                interface
+                    communication
+                        [application, presentation, session]
+                            HTTP
+                    input
+                        HTTP response message
+                    output
+                        HTTP request message
+                functions
+                    runs UI application
+                        UI application
+                            HTML document
+                            Document Object Model
+                            Vue application
+                    initiates HTTP requests
+                    receives and act on HTTP responses
+            ?cache
+            ?resolver
+            ?tunnel
+
+issues
+    [1] system
+        [1]
+            define features
+                ✓minimal viable product
+            design
+                architectural components
+                    data components
+                        ✓data model
+                            resources
+                            representation of resources 
+                        data operation
+                            control data
+                        data storage solutions
+                    connectors
+                        client
+                            user interface
+                        server
+                            origin server
+                        ?cache
+                        ?resolver
+                        ?tunnel
+                    gateway
+                        ✓reverse proxy
+                            load balancer
+                    user agent
+                        browser
+                    ?CDN
+                    ?firewall
+                    ?proxy
+            configure & implement
+                configure architectural components
+                    development environment
+                        data storage solutions
+                        load balancer
+                    production environment
+                        data storage solutions
+                            install database server
+                            install database client
+                            set up database user
+                            set up database
+                        load balancer
+                implement architectural components
+                    data components
+                        ✓SQL scripts
+                            database creater
+                            database destroyer
+                            table creater
+                            table destroyer
+                            seeder
+                    origin server
+                        reuse 'sign in with Google'
+                    Vue application
+                        views
+                            login
+                            registration
+                            settings
+                        components
+                            header
+                            registration
+                            settings
+            test
+                define what to test
+                    functional tests
+                    load tests
+                implement tests
+                test
+                act accordingly to test results
+                    fix issues
+                    improve implementation
+                automate testing process
+                    implement a master test program which runs all slave tests and displays the results in a human readable format
+            deploy
+                design integration flow
+                set up integration flow
+                automate integration process
+            sustatin
+                observe system and react to logs
+                    analyze operational logs
+                    act accordingly to operational logs
+                improve data availability
+                    define metrics of availability
+                improve data security
+                    define metrics of security
+            scale
+                define metrics of scale
+                    ease of modification
+                    ease of integration
+                    observability
+                    service availability
+                    load handling ability
+                    user perceived performance
+    devenv
+        hard-linking of nginx.conf from its origin directory to project directory is not working as expected.
+        I expect the two files to be constantly identical, but the edits made to the copied file is not synced with the original file.
+
+(DEPRECATED) issues
+    __ Reddit clone
+        ___
+            plan
+                determine if it can be built as a set of microservices
+            design
+            build
+            test
+            deploy
+            sustatin
+            scale
+
+features
+    users
+        user management
+            user registration
+                create user account
+                delete user account
+            user session
+                do authentication
+                create login session
+                destroy login session
+    communities
+        create a community
+        view list of communities
+        update a community
+        destroy a community
+    posts
+        create a post 
+        view a list of posts 
+        update a post 
+        delete a post 
+    comments
+        create a comment
+        view list of comment
+        update a comment
+        destroy a comment
+    votes
+        vote for posts
+            create vote
+            view votes
+            destroy vote
+        vote for comments
+            create vote
+            view votes
+            destroy vote
+    
+features - backlog
+    sort
+        posts
+    search
+        communities
+        posts
+
+things to learn through this project
+    client application framework
+        React
+    programming language
+        TypeScript
+    testing
+    web security
+        HTTPS
+    product sustainability
+        load balancing
+        distributed system
+    performance enhancements
+        caching
+    operations
+        web server
+            Nginx
+        containerization
+            Docker
+
+motivations
+    demonstrate web development experience and skills to employers/business clients
+    experience and learn new technologies and software engineering/development principles/methodologies
+

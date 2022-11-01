@@ -1,3 +1,0 @@
-devenv
-    hard-linking of nginx.conf from its origin directory to project directory is not working as expected.
-    I expect the two files to be constantly identical, but the edits made to the copied file is not synced with the original file.
