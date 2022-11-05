@@ -5,7 +5,7 @@ tasks
         main
     implement minimal full-stack functions
         functions
-            render list of links to all communities in existence on browser
+            *render list of links to all communities in existence on browser
             view list of pre-selected posts from every communities on browser
                 method of pre-selection
                     most recently created post
@@ -242,23 +242,30 @@ design
                             home
                                 components
                                     header
-                                        link to home
-                                        link to registration
-                                        link to login
-                                        link to list of joined communities
-                                            list of joined communities
-                                        account controls
-                                            view account info
-                                            update account info
-                                            delete account
-                                        search form
-                                            search results
+                                        items
+                                            IF !(user session)
+                                                link to home view
+                                                drop down list
+                                                    list items
+                                                        links to all communities in existence
+                                                link to registration
+                                                link to login
+                                            IF (user session)
+                                                link to home view
+                                                drop down list
+                                                    list items
+                                                        links to joined communities
+                                                drop down list
+                                                    list items
+                                                        link to profile view
+                                                        link to user settings view
+                                                        link to execute logout function
                                     body
                                         login
                                         registration
                                         settings
                                         community
-                                            (list control
+                                            (list control)
                                                 sort
                                             controls
                                                 link to join community
@@ -610,6 +617,8 @@ issues
     devenv
         hard-linking of nginx.conf from its origin directory to project directory is not working as expected.
         I expect the two files to be constantly identical, but the edits made to the copied file is not synced with the original file.
+        eslint
+            fix [eslint] '...' is missing in props validation (react/prop-types)
 
 (DEPRECATED) issues
     __ Reddit clone
